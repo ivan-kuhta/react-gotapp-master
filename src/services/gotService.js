@@ -39,15 +39,21 @@ export default class GotService {
     }
     
     getHouse = async (id) => {
-        const house = this.getResource(`/houses/${id}/`);
+        const house = await this.getResource(`/houses/${id}/`);
         return this._transformHouse(house);
     }
 
     isSet(data) {
+        if(data instanceof Array) {
+            if(data) {
+                return data.join(', ');
+            }
+        }
+
         if (data) {
-            return data
+            return data;
         } else {
-            return 'no data :('
+            return 'no data :(';
         }
     }
 

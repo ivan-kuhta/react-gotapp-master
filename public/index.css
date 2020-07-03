@@ -6,8 +6,17 @@
 }
 body {
     overflow-x: hidden;
+    font-size: 16px;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: url('img/got.jpeg') center center no-repeat;
     background-size: cover;
-    font-size: 16px;
-    height: 100%;	
+    z-index: -1;
 }
