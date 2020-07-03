@@ -7,8 +7,12 @@ import CharacterPage from '../characterPage';
 
 import ItemList from '../itemList';
 import CharDetails from '../charDetails';
+import GotService from '../../services/gotService';
 
 export default class App extends Component{
+
+    gotService = new GotService();
+
     state = {
         randomChar: true,
         selectedChar: 130,
@@ -22,7 +26,7 @@ export default class App extends Component{
         });
     }
 
-    onCharSelected = (id) => {
+    onItemSelected = (id) => {
         this.setState({
             selectedChar: id
         })
@@ -55,9 +59,13 @@ export default class App extends Component{
                         <button type="button" className="btn btn-primary mb-4" onClick={this.toggleRandomChar}>Toggle random character</button>
                         </Col>
                     </Row>
+                    <CharacterPage/>
                     <Row>
                         <Col md='6'>
-                            <ItemList onCharSelected={this.onCharSelected}/>
+                            <ItemList onItemSelected={this.onItemSelected}
+                                      getData={this.gotService.getAllBooks}
+                                      renderItem={(item) => item.name}
+                                      />
                         </Col>
                         <Col md='6'>
                             <CharDetails charId={this.state.selectedChar} />
@@ -65,7 +73,10 @@ export default class App extends Component{
                     </Row>
                     <Row>
                         <Col md='6'>
-                            <ItemList onCharSelected={this.onCharSelected}/>
+                            <ItemList onItemSelected={this.onItemSelected}
+                                      getData={this.gotService.getAllHouses}
+                                      renderItem={(item) => item.name}
+                                      />
                         </Col>
                         <Col md='6'>
                             <CharDetails charId={this.state.selectedChar} />
