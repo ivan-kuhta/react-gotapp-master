@@ -80,14 +80,7 @@ RandomChar.defaultProps = {
 }
 
 RandomChar.propTypes = {
-    interval: (props, propName, componentName) => {
-        const value = props[propName];
-        if(typeof value === 'number' && !isNaN(value)) {
-            return null;
-        }
-        return new TypeError(`${componentName}: ${propName} must be a number`);
-        
-    }
+    interval: PropTypes.number
 }
 
 const View = ({char}) => {
